@@ -58,15 +58,9 @@ gallery.addEventListener("click", (e) => {
 });
 
 function modal(index) {
-  let {
-    name,
-    dob,
-    phone,
-    email,
-    location: { city, street, state, postcode },
-    picture,
-  } = employees[index];
-  let date = new Date(dob.date);
+ const data = employees[index]
+ console.log(data)
+  let date = new Date(data.dob.date);
 
   const modalHTML = `
     <div class="modal-container data-index="${index}">
@@ -74,18 +68,18 @@ function modal(index) {
             <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
             <div class="modal-info-container">
                     <img class="modal-img" src="${
-                      picture.medium
+                      data.picture.medium
                     }" alt="profile picture">
-                    <h3 id="name" class="modal-name cap">${name.first} ${
-    name.last
+                    <h3 id="name" class="modal-name cap">${data.name.first} ${
+    data.name.last
   }</h3>
-                    <p class="modal-text">${email}</p>
-                    <p class="modal-text cap">${city}</p>
+                    <p class="modal-text">${data.email}</p>
+                    <p class="modal-text cap">${data.city}</p>
                     <hr>
-                    <p class="modal-text">${phone}</p>
-                    <p class="modal-text">${street.number} ${
-    street.name
-  }, ${city}, ${state} ${postcode}</p>
+                    <p class="modal-text">${data.phone}</p>
+                    <p class="modal-text">${data.location.street.number} ${
+    data.location.street.name
+  }, ${data.location.city}, ${data.location.state} ${data.location.postcode}</p>
                     <p class="modal-text">Birthday:  ${date.getMonth()}/${date.getDate()}/${date.getFullYear()}</p>
             </div>
         </div>
