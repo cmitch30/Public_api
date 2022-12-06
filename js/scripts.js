@@ -2,7 +2,7 @@ let employees = [];
 const url = `https://randomuser.me/api/?results=12&inc=name, picture,
 email, location, phone, dob &noinfo &nat=US`;
 const body = document.querySelector("body");
-const cards = document.querySelectorAll(".card");
+const cards = document.getElementsByClassName("card");
 const searchContainer = document.querySelector(".search-container");
 const searchInput = document.createElement("input");
 const submitInput = document.createElement("input");
@@ -52,14 +52,14 @@ gallery.addEventListener("click", (e) => {
   if (e.target.closest(".card")) {
     const card = e.target.closest(".card");
     const index = Number(card.getAttribute("data-index"));
-    console.log(employees[index]);
+    // console.log(employees[index]);
     modal(index);
   }
 });
 
 function modal(index) {
  const data = employees[index]
- console.log(data)
+//  console.log(data)
   let date = new Date(data.dob.date);
 
   const modalHTML = `
@@ -74,7 +74,7 @@ function modal(index) {
     data.name.last
   }</h3>
                     <p class="modal-text">${data.email}</p>
-                    <p class="modal-text cap">${data.city}</p>
+                    <p class="modal-text cap">${data.location.city}</p>
                     <hr>
                     <p class="modal-text">${data.phone}</p>
                     <p class="modal-text">${data.location.street.number} ${
@@ -83,7 +83,11 @@ function modal(index) {
                     <p class="modal-text">Birthday:  ${date.getMonth()}/${date.getDate()}/${date.getFullYear()}</p>
             </div>
         </div>
-    </div>
+           <div class="modal-btn-container">
+                    <button type="button" id="modal-prev" class="modal-prev btn">Prev</button>
+                    <button type="button" id="modal-next" class="modal-next btn">Next</button>
+                </div>
+            </div>
     `;
   gallery.insertAdjacentHTML("afterend", modalHTML);
 }
@@ -106,3 +110,14 @@ body.addEventListener("click", (e) => {
     container.parentNode.removeChild(container);
   }
 });
+
+body.style.backgroundColor= 'teal'
+
+gallery.addEventListener('mouseover', (e) => {
+  const card = e.target.closest(".card");
+  card.setAttribute("style", "background-color:#996633;");
+})
+gallery.addEventListener('mouseout', (e) => {
+   const card = e.target.closest(".card");
+  card.setAttribute("style", "background-color:white;");
+})
