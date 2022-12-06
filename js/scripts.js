@@ -97,7 +97,7 @@ inputField.addEventListener("keyup", (e) => {
   const names = document.querySelectorAll("h3.card-name");
   names.forEach((name) => {
     if (name.textContent.toLowerCase().includes(currentValue)) {
-      name.parentNode.parentNode.style.display = "block";
+      name.parentNode.parentNode.style.display = "flex";
     } else {
       name.parentNode.parentNode.style.display = "none";
     }
@@ -113,11 +113,3 @@ body.addEventListener("click", (e) => {
 
 body.style.backgroundColor= 'teal'
 
-gallery.addEventListener('mouseover', (e) => {
-  const card = e.target.closest(".card");
-  card.setAttribute("style", "background-color:#996633;");
-})
-gallery.addEventListener('mouseout', (e) => {
-   const card = e.target.closest(".card");
-  card.setAttribute("style", "background-color:white;");
-})
